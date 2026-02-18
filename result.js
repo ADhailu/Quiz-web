@@ -1,77 +1,57 @@
 /* =====================================================
-   RESULT PAGE SHARED SCRIPT
-   Reads URL params, renders personality result,
-   handles confetti + sharing + WhatsApp challenge
+   RESULT ENGINE — AI-Vibe Check 2026
+   Handles dynamic rendering, sharing, and viral effects
    ===================================================== */
 
+// Personality Data (Merged with the dark-mesh aesthetic)
 const PERSONALITIES = {
     A: {
         emoji: "🤖",
         title: "The AI Overlord",
-        subtitle: "90-100% Match: You are the machine.",
-        description: "You're living in 2035 while everyone else is stuck in 2024. You have AI agents for your AI agents, your prompts have prompts, and you've probably already automated reading this result. You are the future — and honestly? It's a little terrifying. In the best way.",
-        traits: ["Hyper-Efficient", "Prompt Wizard", "Early Adopter", "Automation King", "Future-Native"],
-        matchPct: 97,
-        rank: "#1 Rarest",
-        accentColor: "#a855f7",
-        accentGlow: "rgba(168,85,247,0.4)",
-        badgeClass: "badge--fire",
-        shareEmoji: "🤖",
-        shareCaption: "I just took the 2026 AI-Vibe Check and I’m officially an AI Overlord. 🤖 My aura is basically digital at this point. If the robots take over, I’m the manager. Can you beat my score or are you still a Muggle? 💅 #AI2026 #VibeCheck #FutureProof"
+        theBurn: "You’ve forgotten what a pen feels like. You probably try to 'Control+F' your physical books and you've automated your own morning coffee. You're barely human anymore—you're just a really well-dressed algorithm.",
+        theFlex: "You are the 1%. While others are panic-googling, you're building empires with three-word prompts. You're not just ready for 2026; you're already halfway through 2030. Infinite Aura.",
+        traits: ["Infinite Aura", "Prompt God", "Future-Native", "Automation King", "Zero Friction"],
+        matchPct: 98,
+        rank: "#1 Legendary",
+        accentColor: "#a855f7"
     },
     B: {
-        emoji: "💻",
-        title: "The Prompt Engineer",
-        subtitle: "60-89% Match: You speak fluent Robot.",
-        description: "You're not obsessed with AI, but you're not scared of it either. You've figured out exactly where it fits in your workflow and you use it with surgical precision. You're the person in the room who actually gets things done while everyone else is still arguing about whether AI is good or bad.",
+        emoji: "👨‍🍳",
+        title: "The Prompt Chef",
+        theBurn: "You spend 4 hours a day talking to a bot and call it 'networking.' If the Wi-Fi goes down for ten minutes, your entire personality might actually delete itself.",
+        theFlex: "You're the person who actually gets things done. You’ve mastered the tools of the future without losing your soul. You're 'Locked In' and basically un-fireable. High-level energy.",
         traits: ["Fluent in Robot", "Surgical Precision", "Pragmatic", "Efficient", "Vibe-Locked"],
-        matchPct: 81,
-        rank: "#2 Rare",
-        accentColor: "#22d3ee",
-        accentGlow: "rgba(34,211,238,0.4)",
-        badgeClass: "badge--ice",
-        shareEmoji: "💻",
-        shareCaption: "I’m a Prompt Engineer! 💻 I speak fluent Robot. My prompts are so clean the AI never hallucinations. Check your AI status here before you get left behind in 2025! 🚀 #PromptMaster #2026Tech #AI"
+        matchPct: 84,
+        rank: "#2 Epic",
+        accentColor: "#22d3ee"
     },
     C: {
         emoji: "📸",
         title: "The AI Tourist",
-        subtitle: "30-59% Match: Just here for the memes.",
-        description: "You've heard all the hype, you've seen the demos, and you're still not sold. You type your own emails, you Google your own questions, and you're proud of it. The good news? Your healthy skepticism keeps you grounded. The bad news? The robots are coming and they don't care about your feelings.",
+        theBurn: "You use AI for the same thing you use your gym membership: looking at it occasionally and feeling guilty. You're a 'Hello World' person in a 'Neural Network' world.",
+        theFlex: "You have a life. You’re not a slave to the machine, and your brain still works without a charging cable. You’re the bridge between the old world and the new—a healthy, normal human.",
         traits: ["Homework Helper", "Meme Maker", "Part-Time AI", "Grounded", "Human-ish"],
-        matchPct: 54,
-        rank: "#3 Uncommon",
-        accentColor: "#f59e0b",
-        accentGlow: "rgba(245,158,11,0.4)",
-        badgeClass: "badge--lightning",
-        shareEmoji: "📸",
-        shareCaption: "I’m an AI Tourist. 📸 I use GPT to do my homework and make memes, but I’m still 100% human (I think). See where you land on the 2026 AI scale! #AIVibe #2026"
+        matchPct: 52,
+        rank: "#3 Rare",
+        accentColor: "#f59e0b"
     },
     D: {
         emoji: "🛖",
         title: "The AI Muggle",
-        subtitle: "0-29% Match: Living in 2012.",
-        description: "In a world going full robot, you're doubling down on what makes us human. Empathy, connection, presence — these are your weapons. And here's the secret the tech bros don't want you to know: the most valuable skill in an AI world isn't prompting. It's being genuinely, deeply human. You've already won.",
+        theBurn: "Your brain is 404-coded. You still think 'The Cloud' is for rain and you probably type with your index fingers. Pure 'Unc' energy.",
+        theFlex: "Lowkey, you’re the most 'Based' person here. While we’re all rotting our brains with AI, you’re out here having real conversations and living rent-free in the physical world. You’re the main character of the 'Human-core' movement.",
         traits: ["Analog Original", "Authentic Human", "Cloud Skeptic", "Unc Energy", "Offline Legend"],
-        matchPct: 18,
-        rank: "#4 Common",
-        accentColor: "#ec4899",
-        accentGlow: "rgba(236,72,153,0.4)",
-        badgeClass: "badge--star",
-        shareEmoji: "🛖",
-        shareCaption: "Help... I’m an AI Muggle. 🛖 I still think 'The Cloud' is for rain. Apparently, I’m living in 2012 while everyone else is in 2026. Take the test and see if you’re as 'Unc' as I am. 😂 #AIFail #BoomerEnergy #MuggleLife"
+        matchPct: 12,
+        rank: "#4 Classic",
+        accentColor: "#ec4899"
     }
 };
 
-// ===== READ URL PARAMS =====
-const params = new URLSearchParams(window.location.search);
-const winner = params.get('winner') || 'A';
-const scoreA = parseInt(params.get('a') || 0);
-const scoreB = parseInt(params.get('b') || 0);
-const scoreC = parseInt(params.get('c') || 0);
-const scoreD = parseInt(params.get('d') || 0);
-const total = scoreA + scoreB + scoreC + scoreD || 10;
-const myScore = { A: scoreA, B: scoreB, C: scoreC, D: scoreD }[winner];
+// URL State
+const urlParams = new URLSearchParams(window.location.search);
+const winner = urlParams.get('winner') || 'A';
+const myScore = urlParams.get(winner.toLowerCase()) || 0;
+const total = 10; // Total questions
 
 const p = PERSONALITIES[winner];
 
@@ -79,12 +59,12 @@ const p = PERSONALITIES[winner];
 document.addEventListener('DOMContentLoaded', () => {
     // Set accent color CSS var
     document.documentElement.style.setProperty('--result-accent', p.accentColor);
-    document.documentElement.style.setProperty('--result-glow', p.accentGlow);
 
     document.getElementById('result-emoji').textContent = p.emoji;
     document.getElementById('result-title').textContent = p.title;
-    document.getElementById('result-subtitle').textContent = p.subtitle;
-    document.getElementById('result-description').textContent = p.description;
+    document.getElementById('result-burn').textContent = p.theBurn;
+    document.getElementById('result-flex').textContent = p.theFlex;
+
     document.getElementById('stat-score').textContent = `${myScore}/${total}`;
     document.getElementById('stat-pct').textContent = `${p.matchPct}%`;
     document.getElementById('stat-rank').textContent = p.rank;
@@ -94,8 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
     traitsEl.innerHTML = p.traits.map(t => `<span class="trait-tag">${t}</span>`).join('');
 
     // Share setup
-    const shareText = p.shareCaption;
     const shareUrl = window.location.origin + '/index.html';
+    const shareText = `I got ${p.title} on the AI-Vibe Check! ${p.emoji} Beat my score if you're not an AI Muggle.`;
+
     document.getElementById('copy-link-input').value = shareUrl;
 
     // TikTok share
@@ -124,12 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-copy-link').addEventListener('click', () => {
         const input = document.getElementById('copy-link-input');
         const btn = document.getElementById('btn-copy-link');
-        const label = document.getElementById('copy-btn-text');
         navigator.clipboard.writeText(input.value).then(() => {
-            btn.classList.add('copied');
-            label.textContent = 'Copied!';
-            setTimeout(() => { btn.classList.remove('copied'); label.textContent = 'Copy Link'; }, 2500);
-        }).catch(() => { input.select(); document.execCommand('copy'); });
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy Link'; }, 2500);
+        });
     });
 
     // Retake logic
@@ -137,8 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html';
     });
 
-    // Wait 0.5s before showing interactions to simulate the "loading" feeling/ad clearing
-    // Content is already rendered, but we want the user to process the result first.
     launchConfetti();
 });
 

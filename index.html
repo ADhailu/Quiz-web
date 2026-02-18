@@ -14,7 +14,7 @@
     <meta property="og:image" content="og-image.png" />
     <meta property="og:type" content="website" />
 
-    <title>The 2026 AI-Vibe Check: Are you an AI 'Master' or an AI 'Muggle'? | Viral Quiz</title>
+    <title>AI-Vibe Check | Discover Your 2026 AI Persona</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -23,85 +23,240 @@
 </head>
 
 <body>
+    <!-- STICKY HEADER -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">V</div>
+                AI-Vibe
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#activity" class="nav-link">Activity</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="#screen-quiz" id="nav-btn-start" class="btn nav-btn">Take Quiz</a>
+            </div>
+        </nav>
+    </header>
 
-    <!-- ===================== AD SPACE TOP ===================== -->
-    <div id="AD_SPACE_TOP" class="ad-space ad-space--top" aria-label="Advertisement">
-        <!-- PASTE YOUR TOP BANNER AD SCRIPT HERE -->
-        <span class="ad-label">AD_SPACE_TOP</span>
+    <div class="site-container">
+        <!-- Main Area -->
+        <main class="main-content">
+
+            <div id="AD_SPACE_TOP" class="ad-space" style="min-height: 90px; margin-bottom: 2rem;">
+                <span class="ad-label">AD_SPACE_TOP (Responsive Leaderboard)</span>
+            </div>
+
+            <!-- INTRO / HOME SCREEN -->
+            <section id="screen-intro" class="screen active">
+                <!-- HERO SECTION -->
+                <div class="hero">
+                    <span class="hero-badge">2026 Viral Edition</span>
+                    <h1 class="hero-title">Are you an AI <span>Master</span> or an AI <span>Muggle?</span></h1>
+                    <p class="hero-p">The definitive 60-second test to discover your survival status in the age of the
+                        machines.</p>
+                    <div class="hero-cta">
+                        <button id="btn-start" class="btn btn--primary btn--large">Start My Vibe Check →</button>
+                    </div>
+                </div>
+
+                <!-- CARDS SECTION -->
+                <div class="app-wrapper">
+                    <div class="personality-preview" style="margin-bottom: 4rem;">
+                        <span class="badge badge--fire">🤖 AI Overlord</span>
+                        <span class="badge badge--ice">💻 Prompt Engineer</span>
+                        <span class="badge badge--lightning">📸 AI Tourist</span>
+                        <span class="badge badge--star">🛖 AI Muggle</span>
+                    </div>
+
+                    <!-- FEATURES GRID -->
+                    <div id="features" class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Instant Analysis</h3>
+                            <p>Our 2026 engine interprets your digital vibe in real-time. No waiting, just facts.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧬</div>
+                            <h3>AI-Vibe Logic</h3>
+                            <p>Proprietary scoring based on tech-survival instincts and digital aura.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔥</div>
+                            <h3>Viral Ready</h3>
+                            <p>Get a custom share package for TikTok, Instagram, and WhatsApp after you finish.</p>
+                        </div>
+                    </div>
+
+                    <!-- SOCIAL PROOF / ACTIVITY -->
+                    <div id="activity" class="activity-feed">
+                        <h2 class="section-title">Recent Activity</h2>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-avatar" style="background:#f472b6;">JD</div>
+                                <span><strong>@jamie_d</strong> just discovered they are an <strong>AI Overlord</strong>
+                                    🤖</span>
+                            </div>
+                            <div class="activity-item" style="animation-delay: 0.1s;">
+                                <div class="activity-avatar" style="background:#60a5fa;">SK</div>
+                                <span><strong>@sam_k</strong> got: <strong>The AI Tourist</strong> 📸 (Ouch!)</span>
+                            </div>
+                            <div class="activity-item" style="animation-delay: 0.2s;">
+                                <div class="activity-avatar" style="background:#34d399;">ML</div>
+                                <span><strong>@mark_l</strong> is officially a <strong>Prompt Engineer</strong>
+                                    💻</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA BOX -->
+                    <div class="cta-box">
+                        <h2>Ready to lock in your score?</h2>
+                        <p>Join 10,000+ others who checked their vibe this hour.</p>
+                        <button id="btn-start-footer" class="btn btn--primary btn--large">Check My Vibe Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUIZ SCREEN -->
+            <section id="screen-quiz" class="screen">
+                <div class="app-wrapper">
+                    <div class="quiz-header">
+                        <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                            aria-valuemax="100">
+                            <div id="progress-fill" class="progress-fill"></div>
+                            <div id="progress-glow" class="progress-glow"></div>
+                        </div>
+                        <div class="progress-meta"
+                            style="display:flex; justify-content:space-between; margin-top:0.75rem; font-size:0.85rem; font-weight:600; color:var(--text-muted);">
+                            <span id="progress-label">Question 1 of 10</span>
+                            <span id="progress-pct">0%</span>
+                        </div>
+                    </div>
+
+                    <div id="question-card" class="glass-card question-card">
+                        <span id="question-number-badge" class="q-badge">Q1</span>
+                        <h2 id="question-text" class="question-text">Loading question...</h2>
+                        <div id="options-container" class="options-list">
+                            <!-- Options injected by JS -->
+                        </div>
+
+
+                        <div class="btn-next-container">
+                            <button id="btn-next" class="btn btn--primary" style="width:100%;" disabled>
+                                <span id="btn-next-label">Next Question</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOADING SCREEN -->
+            <section id="screen-loading" class="screen">
+                <div class="app-wrapper">
+                    <div class="glass-card loading-card" style="text-align:center;">
+                        <div class="spinner" style="margin: 0 auto 2rem;"></div>
+                        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem;">Calculating your vibe...
+                        </h2>
+                        <p style="color: var(--text-muted); margin-bottom: 3rem;">Analyzing your digital aura for
+                            AI-Vibe status.</p>
+                        <div class="ad-space" style="min-height: 250px;">
+                            <span class="ad-label">INTERSTITIAL_AD (High CPM)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESULT SCREEN (SPA Mode) -->
+            <section id="screen-result" class="screen">
+                <div class="result-page-wrapper"
+                    style="width: 100%; max-width: 640px; margin: 0 auto; padding: 1rem; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                    <div id="AD_SPACE_RESULTS" class="ad-space ad-space--results" aria-label="Advertisement"
+                        style="margin-bottom: 1rem;">
+                        <span class="ad-label">AD_SPACE_RESULTS</span>
+                    </div>
+
+                    <div class="glass-card results-card">
+                        <div id="confetti-container" class="result-confetti"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;">
+                        </div>
+                        <a href="index.html" class="back-link btn-retake-quiz">← Take the quiz again</a>
+
+                        <div class="result-emoji" id="result-emoji">🤖</div>
+                        <div class="result-type-label">Your 2026 AI-Vibe Type</div>
+                        <h1 id="result-title" class="result-title"></h1>
+
+                        <!-- Insights -->
+                        <div class="personality-insight burn-box">
+                            <span class="insight-label">The Burn</span>
+                            <p id="result-burn" class="result-text"></p>
+                        </div>
+
+                        <div class="personality-insight flex-box">
+                            <span class="insight-label">The Flex</span>
+                            <p id="result-flex" class="result-text"></p>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="result-stats">
+                            <div class="stat-item">
+                                <div id="stat-score" class="stat-value">0/10</div>
+                                <div class="stat-label">Vibe Score</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <div id="stat-pct" class="stat-value">0%</div>
+                                <div class="stat-label">AI Match</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <div id="stat-rank" class="stat-value">Classic</div>
+                                <div class="stat-label">Rarity Rank</div>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div id="result-traits" class="result-traits">
+                            <!-- Injected by JS -->
+                        </div>
+
+                        <!-- Viral CTA -->
+                        <button id="btn-challenge-whatsapp" class="btn--whatsapp">
+                            Challenge Your Friends on WhatsApp 🚀
+                        </button>
+
+                        <!-- Share Box -->
+                        <div class="share-section">
+                            <h3 class="share-title">Flex Your Status</h3>
+                            <div class="share-grid">
+                                <button id="btn-share-tiktok" class="btn-social btn--tiktok">TikTok</button>
+                                <button id="btn-share-instagram" class="btn-social btn--instagram">Instagram</button>
+                            </div>
+
+                            <div class="copy-link-box">
+                                <input type="text" id="copy-link-input" class="copy-link-input" readonly value="">
+                                <button id="btn-copy-link" class="btn--copy">Copy Link</button>
+                            </div>
+                        </div>
+
+                        <button id="btn-retake" class="btn btn--primary btn-retake-quiz"
+                            style="width: 100%; margin-top: 2rem;">Retake the Quiz</button>
+                    </div>
+                </div>
+            </section>
+
     </div>
-    <!-- ======================================================= -->
 
-    <div class="app-wrapper">
-
-        <!-- INTRO SCREEN -->
-        <section id="screen-intro" class="screen active">
-            <div class="glass-card intro-card">
-                <div class="emoji-hero">🔮</div>
-                <h1 class="intro-title">The 2026 AI-Vibe Check: Are you an AI 'Master' or an AI 'Muggle'?</h1>
-                <p class="intro-subtitle">10 questions · 60 seconds · Discover your type</p>
-                <div class="personality-preview">
-                    <span class="badge badge--fire">🤖 The AI Master</span>
-                    <span class="badge badge--ice">⚡ The AI Operator</span>
-                    <span class="badge badge--lightning">😅 The AI Skeptic</span>
-                    <span class="badge badge--star">💛 The Human-First</span>
-                </div>
-                <button id="btn-start" class="btn btn--primary btn--large">
-                    <span>Start Quiz</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </button>
-                <p class="intro-note">🔒 No sign-up required · Free forever</p>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About Us</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
             </div>
-        </section>
-
-        <!-- QUIZ SCREEN -->
-        <section id="screen-quiz" class="screen">
-            <div class="progress-container">
-                <div class="progress-header">
-                    <span id="progress-label" class="progress-label">Question 1 of 10</span>
-                    <span id="progress-pct" class="progress-pct">0%</span>
-                </div>
-                <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                    aria-label="Quiz progress">
-                    <div id="progress-fill" class="progress-fill"></div>
-                    <div id="progress-glow" class="progress-glow"></div>
-                </div>
-            </div>
-
-            <!-- ============= AD SPACE BETWEEN QUESTIONS ============= -->
-            <div id="AD_SPACE_BETWEEN_QUESTIONS" class="ad-space ad-space--inline" aria-label="Advertisement">
-                <!-- PASTE YOUR IN-FEED / BETWEEN-QUESTIONS AD SCRIPT HERE -->
-                <span class="ad-label">AD_SPACE_BETWEEN_QUESTIONS</span>
-            </div>
-            <!-- ====================================================== -->
-
-            <div id="question-card" class="glass-card question-card">
-                <div class="question-number-badge" id="question-number-badge">Q1</div>
-                <h2 id="question-text" class="question-text"></h2>
-                <div id="options-container" class="options-container"></div>
-                <button id="btn-next" class="btn btn--primary btn--next" disabled>
-                    <span id="btn-next-label">Next Question</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </div>
-        </section>
-
-        <!-- LOADING SCREEN -->
-        <section id="screen-loading" class="screen">
-            <div class="glass-card loading-card">
-                <div class="loading-orb"></div>
-                <h2 class="loading-title">Analyzing your vibe…</h2>
-                <p class="loading-sub">Our AI is calculating your 2026 personality type</p>
-                <div class="loading-dots"><span></span><span></span><span></span></div>
-            </div>
-        </section>
-
-    </div><!-- /app-wrapper -->
+            <p class="footer-copy">&copy; 2026 AI-Vibe Check. A Viral Quiz Project.</p>
+        </div>
+    </footer>
 
     <script src="quiz.js"></script>
 </body>
