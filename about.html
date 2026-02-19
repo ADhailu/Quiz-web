@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | AI-Vibe Check</title>
+    <title>About Us | VibeMetric</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Css/style.css">
 </head>
 
 <body>
@@ -17,10 +17,11 @@
     <header class="site-header">
         <nav class="nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">V</div>
-                AI-Vibe
+                <div class="logo-icon"><img src="Imgs/aura.png" alt=""></div>
+                <div class="logo-text">VibeMetric</div>
             </a>
             <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="index.html#features" class="nav-link">Features</a>
                 <a href="index.html#activity" class="nav-link">Activity</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -39,7 +40,7 @@
                 <section class="hero" style="padding: 2rem 1rem 4rem;">
                     <span class="hero-badge">Our Story</span>
                     <h1 class="hero-title" style="font-size: 3rem;">Decoding the <span>Digital Aura</span></h1>
-                    <p class="hero-p">At AI-Vibe Check, we believe technology isn't just about code—it's about how it
+                    <p class="hero-p">At VibeMetric.ai, we believe technology isn't just about code—it's about how it
                         makes us feel.</p>
                 </section>
 
@@ -66,8 +67,19 @@
                     <a href="index.html" class="btn btn--primary btn--large">Start the Quiz Now</a>
                 </div>
             </div>
+        </main>
 
+        <!-- Vertical Ad Sidebar -->
+        <aside class="ad-sidebar-right">
+            <div class="sticky-ad-container">
+                <div class="vertical-ad">
+                    <span class="ad-label">SIDEBAR_AD_VERTICAL</span>
+                    <p style="font-size: 10px; opacity: 0.5; margin-top: 5px;">(300 x 600 High CPM)</p>
+                </div>
+            </div>
+        </aside>
     </div>
+
 
     <footer class="site-footer">
         <div class="footer-content">
@@ -77,9 +89,35 @@
                 <a href="contact.html" class="footer-link">Contact</a>
                 <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
             </div>
-            <p class="footer-copy">&copy; 2026 AI-Vibe Check. A Viral Quiz Project.</p>
+            <div class="footer-sponsor-wrap">
+                <button id="btn-open-sponsor" class="btn--sponsor">
+                    <span>🚀</span> Feature Your AI Tool
+                </button>
+            </div>
+            <p class="footer-copy">&copy; 2026 VibeMetric. A Viral Quiz Project.</p>
         </div>
     </footer>
+
+    <!-- Sponsor Modal -->
+    <div id="sponsor-modal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <button id="btn-close-sponsor-x" class="modal-close-btn" aria-label="Close Modal">&times;</button>
+            <h2 class="sponsor-modal-title">Ready to Go Viral? 🚀</h2>
+            <p class="sponsor-modal-text">
+                Want to reach thousands of AI-Native users? We offer featured spots on our results page.
+            <div class="sponsor-email-container">
+                <span class="sponsor-email-highlight">vibemetricpartnership.com</span>
+                <span style="display:block; font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Subject: [AD
+                    SUBMISSION]</span>
+            </div>
+            </p>
+            <button id="btn-close-sponsor" class="btn btn--primary" style="width: 100%;">
+                Got it!
+            </button>
+        </div>
+    </div>
+
+    <script src="Scripts/sponsor.js"></script>
 </body>
 
 </html>

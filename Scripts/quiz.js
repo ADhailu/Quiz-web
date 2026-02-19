@@ -1,5 +1,5 @@
 /* =====================================================
-   QUIZ ENGINE — The 2026 AI-Vibe Check
+   QUIZ ENGINE — VibeMetric.ai
    4 Types: A=AI Overlord  B=Prompt Engineer  C=AI Tourist  D=AI Muggle
    ===================================================== */
 
@@ -150,8 +150,7 @@ let currentWinner = null;
 const screens = {
     intro: document.getElementById('screen-intro'),
     quiz: document.getElementById('screen-quiz'),
-    loading: document.getElementById('screen-loading'),
-    result: document.getElementById('screen-result')
+    loading: document.getElementById('screen-loading')
 };
 
 const progressFill = document.getElementById('progress-fill');
@@ -188,37 +187,21 @@ function syncUrlWithState(qIndex, push = true) {
     }
 }
 
-function syncUrlWithResult(winner, push = true) {
-    const url = new URL(window.location);
-    url.searchParams.delete('q');
-    url.searchParams.set('winner', winner);
-
-    if (push) {
-        history.pushState({ winner }, `Your Result: ${PERSONALITIES[winner].title}`, url.search);
-    }
-}
 
 function handleUrlOnLoad() {
     const params = new URLSearchParams(window.location.search);
     const qParam = params.get('q');
-    const winnerParam = params.get('winner');
 
-    if (winnerParam && PERSONALITIES[winnerParam.toUpperCase()]) {
-        const winner = winnerParam.toUpperCase();
-        renderResult(winner);
-        showScreen('result');
-    } else if (qParam) {
+    if (qParam) {
         const qIndex = parseInt(qParam) - 1;
         if (qIndex >= 0 && qIndex < QUESTIONS.length) {
             currentQuestion = qIndex;
             showScreen('quiz');
             renderQuestion(false);
-        } else {
-            showScreen('intro');
+            return;
         }
-    } else {
-        showScreen('intro');
     }
+    showScreen('intro');
 }
 
 // ===== SCREEN TRANSITIONS =====
@@ -274,44 +257,86 @@ function renderQuestion(pushToHistory = true) {
     progressPct.textContent = pct + '%';
 }
 
-// ===== RENDER RESULT =====
-function renderResult(winner) {
-    const p = PERSONALITIES[winner];
-    currentWinner = winner;
 
-    document.documentElement.style.setProperty('--result-accent', p.accentColor);
+// ===== POST-QUIZ ENGAGEMENT LOGIC =====
+function animateEngagementModule() {
+    // 0. Trigger Sequential Entrance
+    document.querySelectorAll('.engagement-card').forEach(card => {
+        card.classList.remove('reveal-card');
+        void card.offsetWidth; // Force reflow
+        card.classList.add('reveal-card');
+    });
 
-    document.getElementById('result-emoji').textContent = p.emoji;
-    document.getElementById('result-title').textContent = p.title;
-    document.getElementById('result-burn').textContent = p.theBurn;
-    document.getElementById('result-flex').textContent = p.theFlex;
+    // 1. Aura Leaderboard - Mock distribution
+    const stats = { A: 15, B: 28, C: 42, D: 15 }; // Mock global data
+    setTimeout(() => {
+        document.getElementById('bar-a').style.width = stats.A + '%';
+        document.getElementById('bar-b').style.width = stats.B + '%';
+        document.getElementById('bar-c').style.width = stats.C + '%';
+        document.getElementById('bar-d').style.width = stats.D + '%';
+    }, 500);
 
-    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0) || 10;
-    document.getElementById('stat-score').textContent = `${scores[winner]}/${totalScore}`;
-    document.getElementById('stat-pct').textContent = `${p.matchPct}%`;
-    document.getElementById('stat-rank').textContent = p.rank;
+    // 2. Micro-Poll Logic
+    const pollContainer = document.getElementById('poll-container');
+    const questionView = pollContainer.querySelector('.poll-question-view');
+    const resultsView = pollContainer.querySelector('.poll-results-view');
+    const pollButtons = pollContainer.querySelectorAll('.poll-opt');
 
-    const traitsEl = document.getElementById('result-traits');
-    traitsEl.innerHTML = p.traits.map(t => `<span class="trait-tag">${t}</span>`).join('');
+    pollButtons.forEach(btn => {
+        btn.onclick = () => {
+            const vote = btn.dataset.vote;
+            questionView.classList.add('slide-hidden');
 
-    // Sharing Links
-    const shareUrl = window.location.origin + window.location.pathname;
-    const shareText = `I got ${p.title} on the AI-Vibe Check! ${p.emoji} Beat my score!`;
-    document.getElementById('copy-link-input').value = shareUrl;
+            // Mock result reveal
+            setTimeout(() => {
+                questionView.style.display = 'none';
+                resultsView.classList.remove('slide-hidden');
+                resultsView.classList.add('slide-visible');
 
-    launchConfetti();
-    refreshAds();
+                const yesPct = vote === 'yes' ? 68 : 64; // Slight bias for fun
+                const noPct = 100 - yesPct;
+
+                setTimeout(() => {
+                    document.getElementById('poll-bar-yes').style.width = yesPct + '%';
+                    document.getElementById('poll-bar-no').style.width = noPct + '%';
+                    document.getElementById('poll-pct-yes').textContent = yesPct + '%';
+                    document.getElementById('poll-pct-no').textContent = noPct + '%';
+                }, 100);
+            }, 300);
+        };
+    });
 }
 
-// ===== LOADING → RESULT =====
+// ===== LOADING → RESULT (Redirect Flow) =====
 function showLoadingThenResult() {
-    showScreen('loading');
+    const modal = document.getElementById('ad-interstitial-modal');
+    const closeBtn = document.getElementById('btn-close-ad');
+    const closeBtnX = document.getElementById('btn-close-ad-x');
+    const calcState = document.getElementById('modal-calculating');
+    const adState = document.getElementById('modal-ad-content');
+
+    // 1. Calculate Winner
+    const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+
+    // 2. Show Modal (Initial Calc State)
+    calcState.classList.add('active');
+    adState.classList.remove('active');
+    modal.classList.add('active');
+
+    // 3. Switch to Ad State after 2.5s
     setTimeout(() => {
-        const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-        renderResult(winner);
-        syncUrlWithResult(winner);
-        showScreen('result');
-    }, 3000);
+        calcState.classList.remove('active');
+        adState.classList.add('active');
+        refreshAds();
+    }, 2500);
+
+    const closeModalAndRedirect = () => {
+        modal.classList.remove('active');
+        window.location.href = `results.html?winner=${winner}`;
+    };
+
+    closeBtn.onclick = closeModalAndRedirect;
+    closeBtnX.onclick = closeModalAndRedirect;
 }
 
 // ===== CONFETTI =====
@@ -355,28 +380,6 @@ btnNext.addEventListener('click', () => {
     }
 });
 
-// Result Sharing Listeners
-document.getElementById('btn-share-tiktok').onclick = () => {
-    const shareUrl = window.location.origin + window.location.pathname;
-    window.open(`https://www.tiktok.com/share?url=${encodeURIComponent(shareUrl)}`, '_blank');
-};
-document.getElementById('btn-share-instagram').onclick = () => {
-    const shareUrl = window.location.origin + window.location.pathname;
-    navigator.clipboard.writeText(shareUrl).then(() => alert('Link copied for Instagram!'));
-};
-document.getElementById('btn-challenge-whatsapp').onclick = () => {
-    const shareUrl = window.location.origin + window.location.pathname;
-    const msg = `I got ${PERSONALITIES[currentWinner].title} on the AI-Vibe Check! ${PERSONALITIES[currentWinner].emoji} Challenge me: ${shareUrl}`;
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-};
-document.getElementById('btn-copy-link').onclick = () => {
-    const input = document.getElementById('copy-link-input');
-    navigator.clipboard.writeText(input.value).then(() => {
-        const btn = document.getElementById('btn-copy-link');
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy Link', 2000);
-    });
-};
 document.querySelectorAll('.btn-retake-quiz').forEach(btn => btn.onclick = (e) => {
     e.preventDefault();
     const url = new URL(window.location);

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="VibeMetric AI - Your Results Are In. Discover your true digital aura and 2026 status." />
+    <title>VibeMetric | Your AI Persona Results</title>
+
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="Css/style.css" />
+
+    <!-- Google AdSense (Placeholder) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="theme-dark results-page">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><img src="Imgs/aura.png" alt=""></div>
+                <div class="logo-text">VibeMetric</div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#activity" class="nav-link">Activity</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="index.html#screen-quiz" id="nav-btn-start" class="btn nav-btn">Take Quiz</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-layout-wrapper">
+        <main class="content-container">
+            <!-- Global Leaderboard Ad -->
+            <div class="ad-space ad-space--leaderboard" aria-label="Advertisement">
+                <span class="ad-label">TOP_LEADERBOARD_728x90</span>
+                <p style="font-size: 10px; opacity: 0.5; margin-top: 5px;">(Responsive Ad Slot)</p>
+            </div>
+
+            <!-- RESULT SCREEN -->
+            <section id="screen-result" class="screen active">
+                <div class="result-page-wrapper">
+                    <div class="result-main-column">
+                        <div id="AD_SPACE_RESULTS" class="ad-space ad-space--results" aria-label="Advertisement"
+                            style="margin-bottom: 1rem;">
+                            <span class="ad-label">AD_SPACE_RESULTS</span>
+                            <p style="font-size: 10px; opacity: 0.5; margin-top: 5px;">(300 x 250 / 336 x 280)</p>
+                        </div>
+
+                        <div class="glass-card results-card reveal-card">
+                            <div id="confetti-container" class="result-confetti"
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;">
+                            </div>
+                            <div class="result-emoji" id="result-emoji">💎</div>
+                            <div class="result-type-label">Your Final AI Persona</div>
+                            <h1 id="result-title" class="result-title">Calculating...</h1>
+
+                            <!-- Insights -->
+                            <div class="personality-insight burn-box">
+                                <span class="insight-label">The Archive</span>
+                                <p id="result-burn" class="result-text"></p>
+                            </div>
+
+                            <div class="personality-insight flex-box">
+                                <span class="insight-label">The Flex</span>
+                                <p id="result-flex" class="result-text"></p>
+                            </div>
+
+                            <!-- Stats Grid -->
+                            <div class="result-stats">
+                                <div class="stat-item">
+                                    <div id="stat-score" class="stat-value">0/10</div>
+                                    <div class="stat-label">Aura Points</div>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <div id="stat-pct" class="stat-value">0%</div>
+                                    <div class="stat-label">Rewiring</div>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-item">
+                                    <div id="stat-rank" class="stat-value">Classic</div>
+                                    <div class="stat-label">Rarity Rank</div>
+                                </div>
+                            </div>
+
+                            <!-- Traits -->
+                            <div id="result-traits" class="result-traits">
+                                <!-- Injected by JS -->
+                            </div>
+
+                            <!-- Viral CTA -->
+                            <button id="btn-challenge-whatsapp" class="btn--whatsapp">
+                                Challenge Your Friends on WhatsApp 🚀
+                            </button>
+
+                            <div class="share-section">
+                                <h3 class="share-title">Flex Your Result</h3>
+                                <div class="copy-link-box">
+                                    <input type="text" id="copy-link-input" class="copy-link-input" readonly value="">
+                                    <button id="btn-copy-link" class="btn--copy">Copy Link</button>
+                                </div>
+                            </div>
+
+                            <div class="btn-retake-container" style="margin-top: 2.5rem;">
+                                <a href="index.html" class="btn btn--primary"
+                                    style="width: 100%; text-decoration: none; display: flex; align-items: center; justify-content: center;">
+                                    Retake the Quiz
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post-Quiz Engagement Module -->
+                    <div class="engagement-module">
+                        <div class="glass-card engagement-card randomizer-card delay-1">
+                            <h3 class="engagement-title">Beyond the Vibe...</h3>
+                            <p class="engagement-text">The Overlords have more tests for you. Are you ready?</p>
+                            <a href="vibe-check.html" id="btn-randomizer" class="btn pulsing-cta">
+                                Unlock a Random 2026 Vibe Check ⚡
+                            </a>
+                        </div>
+
+                        <div class="glass-card engagement-card leaderboard-card delay-2">
+                            <h3 class="engagement-title">Total AI Aura Distribution</h3>
+                            <div class="leaderboard-meta" id="leaderboard-context">82% of users are more AI-Native than
+                                you.</div>
+                            <div class="chart-container">
+                                <div class="chart-bar-group">
+                                    <div class="chart-label">Legendary</div>
+                                    <div class="chart-track">
+                                        <div id="bar-a" class="chart-fill bar-legendary" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-group">
+                                    <div class="chart-label">Epic</div>
+                                    <div class="chart-track">
+                                        <div id="bar-b" class="chart-fill bar-epic" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-group">
+                                    <div class="chart-label">Rare</div>
+                                    <div class="chart-track">
+                                        <div id="bar-c" class="chart-fill bar-rare" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar-group">
+                                    <div class="chart-label">Classic</div>
+                                    <div class="chart-track">
+                                        <div id="bar-d" class="chart-fill bar-classic" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card engagement-card poll-card delay-3" id="poll-container">
+                            <div class="poll-question-view">
+                                <h3 class="engagement-title">Quick Aura Check</h3>
+                                <p class="engagement-p">Do you think AI should have legal rights by 2030?</p>
+                                <div class="poll-options">
+                                    <button class="poll-opt btn" data-vote="yes">Absolutely 🤖</button>
+                                    <button class="poll-opt btn" data-vote="no">No Cap, Never 🚫</button>
+                                </div>
+                            </div>
+                            <div class="poll-results-view slide-hidden">
+                                <h3 class="engagement-title">The Collective Mindset</h3>
+                                <div class="poll-stats-list">
+                                    <div class="poll-stat-item">
+                                        <div class="poll-stat-info"><span>Absolutely</span> <span
+                                                id="poll-pct-yes">0%</span></div>
+                                        <div class="poll-stat-track">
+                                            <div id="poll-bar-yes" class="poll-stat-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="poll-stat-item">
+                                        <div class="poll-stat-info"><span>No Cap</span> <span id="poll-pct-no">0%</span>
+                                        </div>
+                                        <div class="poll-stat-track">
+                                            <div id="poll-bar-no" class="poll-stat-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Vertical Ad Sidebar -->
+        <aside class="ad-sidebar-right">
+            <div class="sticky-ad-container">
+                <div class="vertical-ad">
+                    <span class="ad-label">SIDEBAR_AD_VERTICAL</span>
+                    <p style="font-size: 10px; opacity: 0.5; margin-top: 5px;">(300 x 600 High CPM)</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html" class="footer-link">About Us</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="privacy-policy.html" class="footer-link">Privacy Policy</a>
+            </div>
+            <div class="footer-sponsor-wrap">
+                <button id="btn-open-sponsor" class="btn--sponsor">
+                    <span>🚀</span> Feature Your AI Tool
+                </button>
+            </div>
+            <p class="footer-copy">&copy; 2026 VibeMetric. A Viral Quiz Project.</p>
+        </div>
+    </footer>
+
+    <!-- Sponsor Modal -->
+    <div id="sponsor-modal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <button id="btn-close-sponsor-x" class="modal-close-btn" aria-label="Close Modal">&times;</button>
+            <h2 class="sponsor-modal-title">Ready to Go Viral? 🚀</h2>
+            <p class="sponsor-modal-text">
+                Want to reach thousands of AI-Native users? We offer featured spots on our results page.
+            <div class="sponsor-email-container">
+                <span class="sponsor-email-highlight">vibemetricpartnership.com</span>
+                <span style="display:block; font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.6;">Subject: [AD
+                    SUBMISSION]</span>
+            </div>
+            </p>
+            <button id="btn-close-sponsor" class="btn btn--primary" style="width: 100%;">
+                Got it!
+            </button>
+        </div>
+    </div>
+
+    <script src="Scripts/results.js"></script>
+    <script src="Scripts/sponsor.js"></script>
+</body>
+
+</html>
