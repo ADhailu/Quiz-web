@@ -168,12 +168,32 @@ function renderResult(winner) {
 function syncUrlWithResult(winner) {
     const url = new URL(window.location);
     url.searchParams.set('winner', winner);
-    history.pushState({ winner }, '', url.pathname + url.search);
+
+    // Store in session for persistence
+    sessionStorage.setItem('last_vibe_winner', winner);
+
+    // Stealth Mode: Clean the URL bar immediately
+    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    history.pushState({ winner }, '', cleanUrl);
 }
 
 function handleUrlOnLoad() {
     const params = new URLSearchParams(window.location.search);
-    const winner = params.get('winner');
+    let winner = params.get('winner');
+
+    // Stealth Mode: If winner in URL, store it and clean the bar
+    if (winner) {
+        winner = winner.toUpperCase();
+        sessionStorage.setItem('last_vibe_winner', winner);
+
+        // Clean the URL bar (Keep .html, remove ?winner=X)
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState(null, '', cleanUrl);
+    } else {
+        // Try to recover from session
+        winner = sessionStorage.getItem('last_vibe_winner');
+    }
+
     if (winner && PERSONALITIES[winner]) {
         renderResult(winner);
         showScreen('result');
@@ -240,12 +260,14 @@ btnNext.onclick = () => {
 };
 
 document.getElementById('btn-challenge-whatsapp').onclick = () => {
-    const msg = `I'm officially a ${PERSONALITIES[currentWinner].title} on VibeMetric! 🎸 Challenge me: ${window.location.href}`;
+    const fullUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?winner=' + currentWinner;
+    const msg = `I'm officially a ${PERSONALITIES[currentWinner].title} on VibeMetric! 🎸 Challenge me: ${fullUrl}`;
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
 };
 
 document.getElementById('btn-copy-link').onclick = () => {
-    navigator.clipboard.writeText(window.location.href).then(() => {
+    const fullUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?winner=' + currentWinner;
+    navigator.clipboard.writeText(fullUrl).then(() => {
         document.getElementById('btn-copy-link').textContent = 'Copied!';
         setTimeout(() => document.getElementById('btn-copy-link').textContent = 'Copy Link', 2000);
     });
