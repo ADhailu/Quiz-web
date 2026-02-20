@@ -332,6 +332,7 @@ function showLoadingThenResult() {
 
     const closeModalAndRedirect = () => {
         modal.classList.remove('active');
+        // Restore .html for local compatibility; results.js will clean it on load
         window.location.href = `results.html?winner=${winner}`;
     };
 
