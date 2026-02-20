@@ -172,8 +172,11 @@ function syncUrlWithResult(winner) {
     // Store in session for persistence
     sessionStorage.setItem('last_vibe_winner', winner);
 
-    // Stealth Mode: Clean the URL bar immediately
-    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    // Stealth Mode: Clean the URL bar immediately (Remove .html if on web server)
+    let cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    if (window.location.protocol.startsWith('http')) {
+        cleanUrl = cleanUrl.replace('.html', '');
+    }
     history.pushState({ winner }, '', cleanUrl);
 }
 
@@ -186,8 +189,11 @@ function handleUrlOnLoad() {
         winner = winner.toUpperCase();
         sessionStorage.setItem('last_vibe_winner', winner);
 
-        // Clean the URL bar (Keep .html, remove ?winner=X)
-        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        // Clean the URL bar (Remove ?winner=X, and .html if on web server)
+        let cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        if (window.location.protocol.startsWith('http')) {
+            cleanUrl = cleanUrl.replace('.html', '');
+        }
         window.history.replaceState(null, '', cleanUrl);
     } else {
         // Try to recover from session
