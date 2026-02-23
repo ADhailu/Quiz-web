@@ -791,6 +791,40 @@ body {
     }
 }
 
+/* ===== ADSENSE HYGIENE ===== */
+.ad-space {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100px;
+    background: transparent;
+    overflow: hidden;
+    text-align: center;
+}
+
+.ad-sidebar-right {
+    display: block !important;
+    width: 300px;
+    /* Fixed width for vertical sidebar */
+    min-height: 600px;
+}
+
+.vertical-ad {
+    display: block !important;
+    width: 100% !important;
+    min-height: 600px;
+}
+
+.sticky-ad-container {
+    display: block !important;
+    width: 100% !important;
+}
+
+ins.adsbygoogle {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto;
+}
+
 /* ===== INTERSTITIAL MODAL ===== */
 .modal-overlay {
     position: fixed;

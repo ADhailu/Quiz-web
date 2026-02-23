@@ -93,10 +93,13 @@ function renderResult(winner) {
 function refreshAds() {
     try {
         if (window.adsbygoogle) {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            const uninitializedAds = document.querySelectorAll('ins.adsbygoogle:not([data-adsbygoogle-status="done"])');
+            uninitializedAds.forEach(() => {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            });
         }
     } catch (e) {
-        console.warn("Ads failed reset", e);
+        console.warn("AdSense refresh skipped/failed.", e);
     }
 }
 

@@ -103,7 +103,16 @@ const btnNextLabel = document.getElementById('btn-next-label');
 const qNumBadge = document.getElementById('question-number-badge');
 
 function refreshAds() {
-    try { if (window.adsbygoogle) (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+    try {
+        if (window.adsbygoogle) {
+            const uninitializedAds = document.querySelectorAll('ins.adsbygoogle:not([data-adsbygoogle-status="done"])');
+            uninitializedAds.forEach(() => {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            });
+        }
+    } catch (e) {
+        console.warn("AdSense refresh skipped/failed.", e);
+    }
 }
 
 function showScreen(name) {
