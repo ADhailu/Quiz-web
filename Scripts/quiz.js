@@ -359,10 +359,16 @@ function launchConfetti() {
     }
 }
 
+// ===== SAFE ELEMENT LISTENER =====
+function safeAddListener(id, event, callback) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener(event, callback);
+}
+
 // ===== EVENT LISTENERS =====
-document.getElementById('btn-start').addEventListener('click', startQuiz);
-document.getElementById('btn-start-footer').addEventListener('click', startQuiz);
-document.getElementById('nav-btn-start').addEventListener('click', (e) => { e.preventDefault(); startQuiz(); });
+safeAddListener('btn-start', 'click', startQuiz);
+safeAddListener('btn-start-footer', 'click', startQuiz);
+safeAddListener('nav-btn-start', 'click', (e) => { e.preventDefault(); startQuiz(); });
 
 function startQuiz() {
     currentQuestion = 0;
@@ -371,15 +377,17 @@ function startQuiz() {
     showScreen('quiz');
 }
 
-btnNext.addEventListener('click', () => {
-    scores[selectedOption]++;
-    currentQuestion++;
-    if (currentQuestion >= QUESTIONS.length) {
-        showLoadingThenResult();
-    } else {
-        renderQuestion(true);
-    }
-});
+if (btnNext) {
+    btnNext.addEventListener('click', () => {
+        scores[selectedOption]++;
+        currentQuestion++;
+        if (currentQuestion >= QUESTIONS.length) {
+            showLoadingThenResult();
+        } else {
+            renderQuestion(true);
+        }
+    });
+}
 
 document.querySelectorAll('.btn-retake-quiz').forEach(btn => btn.onclick = (e) => {
     e.preventDefault();
