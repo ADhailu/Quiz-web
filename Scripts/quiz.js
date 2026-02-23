@@ -314,34 +314,18 @@ function animateEngagementModule() {
 // ===== LOADING → RESULT (Redirect Flow) =====
 function showLoadingThenResult() {
     const modal = document.getElementById('ad-interstitial-modal');
-    const closeBtn = document.getElementById('btn-close-ad');
-    const closeBtnX = document.getElementById('btn-close-ad-x');
-    const calcState = document.getElementById('modal-calculating');
-    const adState = document.getElementById('modal-ad-content');
 
     // 1. Calculate Winner
     const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
 
-    // 2. Show Modal (Initial Calc State)
-    calcState.classList.add('active');
-    adState.classList.remove('active');
+    // 2. Show Transition Modal
     modal.classList.add('active');
 
-    // 3. Switch to Ad State after 2.5s
+    // 3. Wait 3 seconds, then redirect
     setTimeout(() => {
-        calcState.classList.remove('active');
-        adState.classList.add('active');
-        refreshAds();
-    }, 2500);
-
-    const closeModalAndRedirect = () => {
         modal.classList.remove('active');
-        // Restore .html for local compatibility; results.js will clean it on load
         window.location.href = `results.html?winner=${winner}`;
-    };
-
-    closeBtn.onclick = closeModalAndRedirect;
-    closeBtnX.onclick = closeModalAndRedirect;
+    }, 3000);
 }
 
 // ===== CONFETTI =====

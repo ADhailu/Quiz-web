@@ -217,38 +217,27 @@ function handleUrlOnLoad() {
 
 function showLoadingThenResult() {
     const modal = document.getElementById('ad-interstitial-modal');
-    const closeBtn = document.getElementById('btn-close-ad');
-    const closeBtnX = document.getElementById('btn-close-ad-x');
-    const calcState = document.getElementById('modal-calculating');
-    const adState = document.getElementById('modal-ad-content');
 
     const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
     renderResult(winner);
     syncUrlWithResult(winner);
 
-    // Show Screen & Modal (Initial Calc State)
-    showScreen('result');
-    calcState.classList.add('active');
-    adState.classList.remove('active');
+    // 1. Show Transition Modal
     modal.classList.add('active');
 
-    // Switch to Ad after 1.5s
+    // 2. Wait 3 seconds, then Reveal
     setTimeout(() => {
-        calcState.classList.remove('active');
-        adState.classList.add('active');
-        refreshAds();
-    }, 1500);
+        modal.classList.remove('active');
+        showScreen('result');
+        launchConfetti();
 
-    const closeModal = () => { modal.classList.remove('active'); launchConfetti(); };
-    closeBtn.onclick = closeModal;
-    closeBtnX.onclick = closeModal;
-
-    // Trigger Entrance
-    document.querySelectorAll('.engagement-card').forEach(card => {
-        card.classList.remove('reveal-card');
-        void card.offsetWidth;
-        card.classList.add('reveal-card');
-    });
+        // Trigger Engagement Entrance
+        document.querySelectorAll('.engagement-card').forEach(card => {
+            card.classList.remove('reveal-card');
+            void card.offsetWidth;
+            card.classList.add('reveal-card');
+        });
+    }, 3000);
 }
 
 function launchConfetti() {
